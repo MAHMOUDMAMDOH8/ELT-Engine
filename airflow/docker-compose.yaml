@@ -1,98 +1,111 @@
-version: '3.8'
+version: "3.8"
 
 x-airflow-common: &airflow-common
   build: .
-  environment: &airflow-common-env
+  env_file: secrets.env
+  environment:
+    &airflow-common-env
     AIRFLOW__CORE__EXECUTOR: CeleryExecutor
     AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@postgres/airflow
-    AIRFLOW__CORE__SQL_ALCHEMY_CONN: postgresql+psycopg2://172.19.0.2:1234@pgdb/ecommerce
     AIRFLOW__CELERY__RESULT_BACKEND: db+postgresql://airflow:airflow@postgres/airflow
     AIRFLOW__CELERY__BROKER_URL: redis://redis:6379/0
-    AIRFLOW__CORE__FERNET_KEY: ''
-    AIRFLOW__CORE__DAGS_ARE_PAUSED_AT_CREATION: 'true'
-    AIRFLOW__CORE__LOAD_EXAMPLES: 'False'
-    AIRFLOW__CORE__TEST_CONNECTION: 'Enabled'
-    AIRFLOW__API__AUTH_BACKENDS: 'airflow.api.auth.backend.basic_auth'
-    PYTHONPATH: /opt/airflow/dags/incloud  
+    AIRFLOW__CORE__DAGS_ARE_PAUSED_AT_CREATION: "true"
+    AIRFLOW__CORE__TEST_CONNECTION: "Enabled"
+    AIRFLOW__CORE__LOAD_EXAMPLES: "false"
+    AIRFLOW__API__AUTH_BACKENDS: "airflow.api.auth.backend.basic_auth"
   volumes:
-    - ${AIRFLOW_PROJ_DIR:-.}/dags:/opt/airflow/dags
-    - ${AIRFLOW_PROJ_DIR:-.}/logs:/opt/airflow/logs
-    - ${AIRFLOW_PROJ_DIR:-.}/config:/opt/airflow/config
-    - ${AIRFLOW_PROJ_DIR:-.}/plugins:/opt/airflow/plugins
-    - ./dbt:/opt/airflow/dbt
-    - ./dbt/sales:/opt/airflow/dbt/sales
-  user: "root"
+    - ./dags:/opt/airflow/dags
+    - ./logs:/opt/airflow/logs
+    - ./plugins:/opt/airflow/plugins
+    - ./config:/opt/airflow/config
+    - ${AIRFLOW_PROJ_DIR:-.}/source:/opt/airflow/source
+    - ${AIRFLOW_PROJ_DIR:-.}/dbt:/opt/airflow/dbt
+    - ./secrets.env:/opt/airflow/secrets.env
+  user: "${AIRFLOW_UID:-50000}:0"
   depends_on:
+    redis:
+      condition: service_healthy
     postgres:
       condition: service_healthy
   networks:
-    - backend
-
+    - airflow-network
 
 services:
+  redis:
+    image: redis:latest
+    expose: ["6379"]
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 30s
+      retries: 50
+    networks:
+      - airflow-network
+
   postgres:
     image: postgres:13
     environment:
       POSTGRES_USER: airflow
       POSTGRES_PASSWORD: airflow
       POSTGRES_DB: airflow
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U airflow"]
+      test: ["CMD", "pg_isready", "-U", "airflow"]
       interval: 5s
       retries: 5
-    restart: always
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
     networks:
-      - backend
-
-  redis:
-    image: redis:latest
-    ports:
-      - "6379:6379"
-    networks:
-      - backend
+      - airflow-network
 
   airflow-webserver:
     <<: *airflow-common
-    container_name: airflow-webserver
     command: webserver
     ports:
-      - "${HOST_IP:-0.0.0.0}:8081:8080"
+      - "8080:8080"
     healthcheck:
-      test: ["CMD-SHELL", "curl --fail http://localhost:8081/health"]
+      test: ["CMD-SHELL", "curl --fail http://localhost:8080/health"]
       interval: 10s
-      timeout: 10s
+      timeout: 30s
       retries: 5
-    restart: always
 
   airflow-scheduler:
     <<: *airflow-common
-    container_name: airflow-scheduler
     command: scheduler
-    restart: always
 
   airflow-worker:
     <<: *airflow-common
-    container_name: airflow-worker
     command: celery worker
-    restart: always
+    environment:
+      <<: *airflow-common-env
+      DUMB_INIT_SETSID: "0"
 
   airflow-init:
     <<: *airflow-common
-    container_name: airflow-init
-    command: airflow db upgrade
     environment:
       <<: *airflow-common-env
       _AIRFLOW_DB_UPGRADE: 'true'
       _AIRFLOW_WWW_USER_CREATE: 'true'
       _AIRFLOW_WWW_USER_USERNAME: ${_AIRFLOW_WWW_USER_USERNAME:-airflow}
       _AIRFLOW_WWW_USER_PASSWORD: ${_AIRFLOW_WWW_USER_PASSWORD:-airflow}
-    restart: "no"
+    command: >
+      -c "
+      airflow db init &&
+      airflow db upgrade &&
+      airflow users create \
+        --username admin \
+        --password admin \
+        --firstname Admin \
+        --lastname User \
+        --role Admin \
+        --email admin@example.com
+      "
+
+
 
 volumes:
-  postgres_data:
+  postgres-data:
+
 
 networks:
-  backend:
+  airflow-network:
     driver: bridge

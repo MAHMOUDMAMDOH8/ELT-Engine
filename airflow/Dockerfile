@@ -1,7 +1,7 @@
 FROM apache/airflow:2.9.0
 
-RUN pip install dbt-postgres==1.8.2 \
-	&& pip install markupsafe==2.0.1 \
+RUN pip install --upgrade pip \
+	&& pip install markupsafe \
 	&& pip install apache-airflow-providers-postgres \
 	&& pip install apache-airflow-providers-odbc \
 	&& pip install psycopg2-binary \
@@ -9,11 +9,11 @@ RUN pip install dbt-postgres==1.8.2 \
 	&& pip install dbt-airflow \
 	&& pip install plyvel \
 	&& pip install --upgrade cmake \
-	&& pip install --upgrade pyarrow==14.0.0 \
+	&& pip install --upgrade pyarrow \
 	&& pip install apache-airflow-providers-trino \
 	&& pip install dbt-snowflake \
 	&& pip uninstall dbt \
-	&& pip install dbt-core==1.8.2
+	&& pip install dbt-core
 
 
 USER root
@@ -23,5 +23,3 @@ RUN sudo apt-get install -y git
 
 USER airflow
 RUN airflow db migrate
-#RUN airflow db init
-#RUN airflow db upgrade
