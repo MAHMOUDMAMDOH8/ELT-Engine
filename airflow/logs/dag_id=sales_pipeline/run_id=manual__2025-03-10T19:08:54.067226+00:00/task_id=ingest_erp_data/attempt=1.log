@@ -1,0 +1,41 @@
+[2025-03-10T19:08:59.015+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2025-03-10T19:08:59.040+0000] {taskinstance.py:2073} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: sales_pipeline.ingest_erp_data manual__2025-03-10T19:08:54.067226+00:00 [queued]>
+[2025-03-10T19:08:59.050+0000] {taskinstance.py:2073} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: sales_pipeline.ingest_erp_data manual__2025-03-10T19:08:54.067226+00:00 [queued]>
+[2025-03-10T19:08:59.050+0000] {taskinstance.py:2303} INFO - Starting attempt 1 of 1
+[2025-03-10T19:08:59.064+0000] {taskinstance.py:2327} INFO - Executing <Task(PythonOperator): ingest_erp_data> on 2025-03-10 19:08:54.067226+00:00
+[2025-03-10T19:08:59.074+0000] {warnings.py:110} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:61: DeprecationWarning: This process (pid=160) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2025-03-10T19:08:59.075+0000] {standard_task_runner.py:63} INFO - Started process 165 to run task
+[2025-03-10T19:08:59.076+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'sales_pipeline', 'ingest_erp_data', 'manual__2025-03-10T19:08:54.067226+00:00', '--job-id', '44', '--raw', '--subdir', 'DAGS_FOLDER/pipeline.py', '--cfg-path', '/tmp/tmp49z3u7_w']
+[2025-03-10T19:08:59.078+0000] {standard_task_runner.py:91} INFO - Job 44: Subtask ingest_erp_data
+[2025-03-10T19:08:59.125+0000] {task_command.py:426} INFO - Running <TaskInstance: sales_pipeline.ingest_erp_data manual__2025-03-10T19:08:54.067226+00:00 [running]> on host e9482cc19388
+[2025-03-10T19:08:59.228+0000] {taskinstance.py:2644} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='Mahmoud' AIRFLOW_CTX_DAG_ID='sales_pipeline' AIRFLOW_CTX_TASK_ID='ingest_erp_data' AIRFLOW_CTX_EXECUTION_DATE='2025-03-10T19:08:54.067226+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-03-10T19:08:54.067226+00:00'
+[2025-03-10T19:08:59.228+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2025-03-10T19:08:59.324+0000] {warnings.py:110} WARNING - /home/***/.local/lib/python3.12/site-packages/snowflake/connector/options.py:108: UserWarning: You have an incompatible version of 'pyarrow' installed (19.0.1), please install a version that adheres to: 'pyarrow<19.0.0; extra == "pandas"'
+  warn_incompatible_dep(
+
+[2025-03-10T19:08:59.439+0000] {connection.py:423} INFO - Snowflake Connector for Python Version: 3.14.0, Python Version: 3.12.2, Platform: Linux-6.11.0-19-generic-x86_64-with-glibc2.36
+[2025-03-10T19:08:59.440+0000] {connection.py:1226} INFO - Connecting to GLOBAL Snowflake domain
+[2025-03-10T19:08:59.440+0000] {connection.py:1315} INFO - This connection is in OCSP Fail Open Mode. TLS Certificates would be checked for validity and revocation status. Any other Certificate Revocation related exceptions or OCSP Responder failures would be disregarded in favor of connectivity.
+[2025-03-10T19:09:00.127+0000] {snowflake_utilz.py:13} INFO - Connected to snowflake successfully
+[2025-03-10T19:09:00.133+0000] {snowflake_utilz.py:26} INFO - Connected to PostgreSQL database successfully
+[2025-03-10T19:09:00.133+0000] {pipeline.py:111} INFO - 📥 Ingesting ERP data...
+[2025-03-10T19:09:00.136+0000] {ingest_data.py:15} INFO - Start ingesting CUST_AZ12.csv into erp_cust_az12
+[2025-03-10T19:09:00.137+0000] {ingest_data.py:28} ERROR - Error ingesting data from CUST_AZ12.csv into erp_cust_az12: [Errno 2] No such file or directory: 'opt/***/Source/source_crm/CUST_AZ12.csv'
+[2025-03-10T19:09:00.138+0000] {ingest_data.py:15} INFO - Start ingesting LOC_A101.csv into erp_loc_a101
+[2025-03-10T19:09:00.139+0000] {ingest_data.py:28} ERROR - Error ingesting data from LOC_A101.csv into erp_loc_a101: [Errno 2] No such file or directory: 'opt/***/Source/source_crm/LOC_A101.csv'
+[2025-03-10T19:09:00.139+0000] {ingest_data.py:15} INFO - Start ingesting PX_CAT_G1V2.csv into erp_px_cat_g1v2
+[2025-03-10T19:09:00.139+0000] {ingest_data.py:28} ERROR - Error ingesting data from PX_CAT_G1V2.csv into erp_px_cat_g1v2: [Errno 2] No such file or directory: 'opt/***/Source/source_crm/PX_CAT_G1V2.csv'
+[2025-03-10T19:09:00.231+0000] {snowflake_utilz.py:35} INFO - connection is closed
+[2025-03-10T19:09:00.232+0000] {connection.py:810} INFO - closed
+[2025-03-10T19:09:00.303+0000] {connection.py:816} INFO - No async queries seem to be running, deleting session
+[2025-03-10T19:09:00.382+0000] {snowflake_utilz.py:38} INFO - SQLAlchemy engine disposed
+[2025-03-10T19:09:00.383+0000] {snowflake_utilz.py:35} INFO - connection is closed
+[2025-03-10T19:09:00.383+0000] {snowflake_utilz.py:38} INFO - SQLAlchemy engine disposed
+[2025-03-10T19:09:00.383+0000] {python.py:237} INFO - Done. Returned value was: None
+[2025-03-10T19:09:00.384+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2025-03-10T19:09:00.397+0000] {taskinstance.py:1205} INFO - Marking task as SUCCESS. dag_id=sales_pipeline, task_id=ingest_erp_data, execution_date=20250310T190854, start_date=20250310T190859, end_date=20250310T190900
+[2025-03-10T19:09:00.452+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 0
+[2025-03-10T19:09:00.473+0000] {taskinstance.py:3482} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2025-03-10T19:09:00.475+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

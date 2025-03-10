@@ -1,0 +1,52 @@
+[2025-03-10T19:35:23.168+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2025-03-10T19:35:23.191+0000] {taskinstance.py:2073} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: sales_pipeline.ingest_crm_data manual__2025-03-10T19:32:26.566805+00:00 [queued]>
+[2025-03-10T19:35:23.199+0000] {taskinstance.py:2073} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: sales_pipeline.ingest_crm_data manual__2025-03-10T19:32:26.566805+00:00 [queued]>
+[2025-03-10T19:35:23.200+0000] {taskinstance.py:2303} INFO - Starting attempt 3 of 3
+[2025-03-10T19:35:23.211+0000] {taskinstance.py:2327} INFO - Executing <Task(PythonOperator): ingest_crm_data> on 2025-03-10 19:32:26.566805+00:00
+[2025-03-10T19:35:23.220+0000] {warnings.py:110} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:61: DeprecationWarning: This process (pid=87) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2025-03-10T19:35:23.221+0000] {standard_task_runner.py:63} INFO - Started process 89 to run task
+[2025-03-10T19:35:23.222+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'sales_pipeline', 'ingest_crm_data', 'manual__2025-03-10T19:32:26.566805+00:00', '--job-id', '84', '--raw', '--subdir', 'DAGS_FOLDER/pipeline.py', '--cfg-path', '/tmp/tmpw0hz1l6s']
+[2025-03-10T19:35:23.224+0000] {standard_task_runner.py:91} INFO - Job 84: Subtask ingest_crm_data
+[2025-03-10T19:35:23.268+0000] {task_command.py:426} INFO - Running <TaskInstance: sales_pipeline.ingest_crm_data manual__2025-03-10T19:32:26.566805+00:00 [running]> on host 2b35ac7f54da
+[2025-03-10T19:35:23.356+0000] {taskinstance.py:2644} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='Mahmoud' AIRFLOW_CTX_DAG_ID='sales_pipeline' AIRFLOW_CTX_TASK_ID='ingest_crm_data' AIRFLOW_CTX_EXECUTION_DATE='2025-03-10T19:32:26.566805+00:00' AIRFLOW_CTX_TRY_NUMBER='3' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-03-10T19:32:26.566805+00:00'
+[2025-03-10T19:35:23.357+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2025-03-10T19:35:23.446+0000] {warnings.py:110} WARNING - /home/***/.local/lib/python3.12/site-packages/snowflake/connector/options.py:108: UserWarning: You have an incompatible version of 'pyarrow' installed (19.0.1), please install a version that adheres to: 'pyarrow<19.0.0; extra == "pandas"'
+  warn_incompatible_dep(
+
+[2025-03-10T19:35:23.549+0000] {connection.py:423} INFO - Snowflake Connector for Python Version: 3.14.0, Python Version: 3.12.2, Platform: Linux-6.11.0-19-generic-x86_64-with-glibc2.36
+[2025-03-10T19:35:23.550+0000] {connection.py:1226} INFO - Connecting to GLOBAL Snowflake domain
+[2025-03-10T19:35:23.551+0000] {connection.py:1315} INFO - This connection is in OCSP Fail Open Mode. TLS Certificates would be checked for validity and revocation status. Any other Certificate Revocation related exceptions or OCSP Responder failures would be disregarded in favor of connectivity.
+[2025-03-10T19:35:24.817+0000] {snowflake_utilz.py:13} INFO - Connected to snowflake successfully
+[2025-03-10T19:35:24.824+0000] {snowflake_utilz.py:26} INFO - Connected to PostgreSQL database successfully
+[2025-03-10T19:35:24.824+0000] {pipeline.py:76} INFO - 📥 Ingesting CRM data...
+[2025-03-10T19:35:24.825+0000] {ingest_data.py:15} INFO - Start ingesting cust_info.csv into crm_cust_info
+[2025-03-10T19:35:24.854+0000] {snowflake_utilz.py:42} INFO - loading raw data into table crm_cust_info
+[2025-03-10T19:35:24.858+0000] {connection.py:423} INFO - Snowflake Connector for Python Version: 3.14.0, Python Version: 3.12.2, Platform: Linux-6.11.0-19-generic-x86_64-with-glibc2.36
+[2025-03-10T19:35:24.858+0000] {connection.py:1226} INFO - Connecting to GLOBAL Snowflake domain
+[2025-03-10T19:35:24.858+0000] {connection.py:1315} INFO - This connection is in OCSP Fail Open Mode. TLS Certificates would be checked for validity and revocation status. Any other Certificate Revocation related exceptions or OCSP Responder failures would be disregarded in favor of connectivity.
+[2025-03-10T19:35:34.289+0000] {snowflake_utilz.py:47} INFO - raw data loaded successfully into crm_cust_info with 18494 rows
+[2025-03-10T19:35:34.292+0000] {ingest_data.py:25} INFO - Data ingested successfully into crm_cust_info
+[2025-03-10T19:35:34.293+0000] {ingest_data.py:15} INFO - Start ingesting prd_info.csv into crm_prd_info
+[2025-03-10T19:35:34.297+0000] {snowflake_utilz.py:42} INFO - loading raw data into table crm_prd_info
+[2025-03-10T19:35:35.439+0000] {snowflake_utilz.py:47} INFO - raw data loaded successfully into crm_prd_info with 397 rows
+[2025-03-10T19:35:35.441+0000] {ingest_data.py:25} INFO - Data ingested successfully into crm_prd_info
+[2025-03-10T19:35:35.442+0000] {ingest_data.py:15} INFO - Start ingesting sales_details.csv into crm_sales_details
+[2025-03-10T19:35:35.523+0000] {snowflake_utilz.py:42} INFO - loading raw data into table crm_sales_details
+[2025-03-10T19:36:09.129+0000] {snowflake_utilz.py:47} INFO - raw data loaded successfully into crm_sales_details with 60398 rows
+[2025-03-10T19:36:09.131+0000] {ingest_data.py:25} INFO - Data ingested successfully into crm_sales_details
+[2025-03-10T19:36:09.230+0000] {snowflake_utilz.py:35} INFO - connection is closed
+[2025-03-10T19:36:09.231+0000] {connection.py:810} INFO - closed
+[2025-03-10T19:36:09.306+0000] {connection.py:816} INFO - No async queries seem to be running, deleting session
+[2025-03-10T19:36:09.391+0000] {connection.py:810} INFO - closed
+[2025-03-10T19:36:09.470+0000] {connection.py:816} INFO - No async queries seem to be running, deleting session
+[2025-03-10T19:36:09.552+0000] {snowflake_utilz.py:38} INFO - SQLAlchemy engine disposed
+[2025-03-10T19:36:09.552+0000] {snowflake_utilz.py:35} INFO - connection is closed
+[2025-03-10T19:36:09.552+0000] {snowflake_utilz.py:38} INFO - SQLAlchemy engine disposed
+[2025-03-10T19:36:09.553+0000] {python.py:237} INFO - Done. Returned value was: None
+[2025-03-10T19:36:09.553+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2025-03-10T19:36:09.563+0000] {taskinstance.py:1205} INFO - Marking task as SUCCESS. dag_id=sales_pipeline, task_id=ingest_crm_data, execution_date=20250310T193226, start_date=20250310T193523, end_date=20250310T193609
+[2025-03-10T19:36:09.612+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 0
+[2025-03-10T19:36:09.629+0000] {taskinstance.py:3482} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2025-03-10T19:36:09.630+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

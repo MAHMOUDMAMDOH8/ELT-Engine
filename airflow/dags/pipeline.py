@@ -9,7 +9,7 @@ from dotenv import load_dotenv
 
 load_dotenv("secrets.env")
 
-# Default DAG arguments
+
 default_args = {
     'owner': 'Mahmoud',
     'depends_on_past': False,
@@ -18,7 +18,7 @@ default_args = {
     'retries': 0,
 }
 
-# Define DAG
+
 dag = DAG(
     'sales_pipeline',
     default_args=default_args,
@@ -28,11 +28,9 @@ dag = DAG(
     catchup=False
 )
 
-# Get paths from environment variables
+crm_path = "/opt/airflow/Source/source_crm"
+erp_path = "/opt/airflow/Source/source_erp"
 
-
-
-# Snowflake credentials function
 def snowflake_credentials():
     return {
         'user': os.getenv("SNOWFLAKE_USER"),
@@ -44,9 +42,7 @@ def snowflake_credentials():
     }
 
 
-
-
-# Verify Snowflake connection
+#  Snowflake connection
 def test_snowflake_connection():
     snowflake_cred = snowflake_credentials()
     conn, engine = snowFlaek_connection(**snowflake_cred)
@@ -56,7 +52,7 @@ def test_snowflake_connection():
     logging.info("✅ Snowflake connection successful!")
     close_connection(conn, engine)
 
-# PostgreSQL credentials function
+# PostgreSQL credentials 
 def postgres_credentials():
     return {
         'host': os.getenv("POSTGRES_HOST"),
@@ -69,7 +65,6 @@ def postgres_credentials():
 #ingest CRM data
 def ingest_crm_data():
 
-    crm_path = os.getenv("crm_folder")
 
     snowflake_cred = snowflake_credentials()
     Snow_conn, Snow_engine = snowFlaek_connection(**snowflake_cred)
@@ -80,9 +75,6 @@ def ingest_crm_data():
 
     logging.info("📥 Ingesting CRM data...")
 
-    if not Snow_conn or not Post_conn:
-        logging.error("❌ Database connection failed! Cannot ingest CRM data.")
-        return
 
     crm_cus = os.path.join(crm_path, "cust_info.csv")
     ingest_data(crm_cus, "crm_cust_info", Snow_conn, Snow_engine, Post_conn)
@@ -100,7 +92,7 @@ def ingest_crm_data():
 # ingest ERP data
 def ingest_erp_data():
 
-    erp_path = os.getenv("erp_path")
+    logging.info(crm_path)
 
     snowflake_cred = snowflake_credentials()
     Snow_conn, Snow_engine = snowFlaek_connection(**snowflake_cred)
@@ -109,10 +101,6 @@ def ingest_erp_data():
     Post_conn, Post_engine = postgres_connection(**postgres_cred)
     
     logging.info("📥 Ingesting ERP data...")
-
-    if not Snow_conn or not Post_conn:
-        logging.error("❌ Database connection failed! Cannot ingest ERP data.")
-        return
 
     erp_cus = os.path.join(erp_path, "CUST_AZ12.csv")
     ingest_data(erp_cus, "erp_cust_az12", Snow_conn, Snow_engine, Post_conn)
@@ -143,5 +131,4 @@ with dag:
         python_callable=ingest_erp_data
     )
 
-    # Task dependencies
     test_connection_task >> [ingest_crm_data_task, ingest_erp_data_task]
