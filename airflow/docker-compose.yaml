@@ -18,7 +18,7 @@ x-airflow-common: &airflow-common
     - ./logs:/opt/airflow/logs
     - ./plugins:/opt/airflow/plugins
     - ./config:/opt/airflow/config
-    - ${AIRFLOW_PROJ_DIR:-.}/source:/opt/airflow/source
+    - ${AIRFLOW_PROJ_DIR:-.}/Source:/opt/airflow/Source
     - ${AIRFLOW_PROJ_DIR:-.}/dbt:/opt/airflow/dbt
     - ./secrets.env:/opt/airflow/secrets.env
   user: "${AIRFLOW_UID:-50000}:0"

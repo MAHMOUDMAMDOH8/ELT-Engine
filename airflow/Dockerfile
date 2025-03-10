@@ -12,12 +12,10 @@ RUN pip install --upgrade pip \
 	&& pip install --upgrade pyarrow \
 	&& pip install apache-airflow-providers-trino \
 	&& pip install dbt-snowflake \
-	&& pip uninstall dbt \
 	&& pip install dbt-core
 
 
 USER root
-RUN sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys B7B3B788A8D3785C
 RUN sudo apt-get update
 RUN sudo apt-get install -y git
 
