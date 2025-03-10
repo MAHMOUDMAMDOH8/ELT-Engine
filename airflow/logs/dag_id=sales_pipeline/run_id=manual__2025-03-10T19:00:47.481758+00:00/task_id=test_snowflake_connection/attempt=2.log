@@ -1,0 +1,32 @@
+[2025-03-10T19:02:18.462+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2025-03-10T19:02:18.484+0000] {taskinstance.py:2073} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: sales_pipeline.test_snowflake_connection manual__2025-03-10T19:00:47.481758+00:00 [queued]>
+[2025-03-10T19:02:18.492+0000] {taskinstance.py:2073} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: sales_pipeline.test_snowflake_connection manual__2025-03-10T19:00:47.481758+00:00 [queued]>
+[2025-03-10T19:02:18.492+0000] {taskinstance.py:2303} INFO - Starting attempt 2 of 2
+[2025-03-10T19:02:18.504+0000] {taskinstance.py:2327} INFO - Executing <Task(PythonOperator): test_snowflake_connection> on 2025-03-10 19:00:47.481758+00:00
+[2025-03-10T19:02:18.514+0000] {warnings.py:110} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:61: DeprecationWarning: This process (pid=99) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2025-03-10T19:02:18.515+0000] {standard_task_runner.py:63} INFO - Started process 101 to run task
+[2025-03-10T19:02:18.516+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'sales_pipeline', 'test_snowflake_connection', 'manual__2025-03-10T19:00:47.481758+00:00', '--job-id', '28', '--raw', '--subdir', 'DAGS_FOLDER/pipeline.py', '--cfg-path', '/tmp/tmpj9i3oynt']
+[2025-03-10T19:02:18.518+0000] {standard_task_runner.py:91} INFO - Job 28: Subtask test_snowflake_connection
+[2025-03-10T19:02:18.560+0000] {task_command.py:426} INFO - Running <TaskInstance: sales_pipeline.test_snowflake_connection manual__2025-03-10T19:00:47.481758+00:00 [running]> on host e9482cc19388
+[2025-03-10T19:02:18.660+0000] {taskinstance.py:2644} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='Mahmoud' AIRFLOW_CTX_DAG_ID='sales_pipeline' AIRFLOW_CTX_TASK_ID='test_snowflake_connection' AIRFLOW_CTX_EXECUTION_DATE='2025-03-10T19:00:47.481758+00:00' AIRFLOW_CTX_TRY_NUMBER='2' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-03-10T19:00:47.481758+00:00'
+[2025-03-10T19:02:18.661+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2025-03-10T19:02:18.747+0000] {warnings.py:110} WARNING - /home/***/.local/lib/python3.12/site-packages/snowflake/connector/options.py:108: UserWarning: You have an incompatible version of 'pyarrow' installed (19.0.1), please install a version that adheres to: 'pyarrow<19.0.0; extra == "pandas"'
+  warn_incompatible_dep(
+
+[2025-03-10T19:02:18.844+0000] {connection.py:423} INFO - Snowflake Connector for Python Version: 3.14.0, Python Version: 3.12.2, Platform: Linux-6.11.0-19-generic-x86_64-with-glibc2.36
+[2025-03-10T19:02:18.844+0000] {connection.py:1226} INFO - Connecting to GLOBAL Snowflake domain
+[2025-03-10T19:02:18.845+0000] {connection.py:1315} INFO - This connection is in OCSP Fail Open Mode. TLS Certificates would be checked for validity and revocation status. Any other Certificate Revocation related exceptions or OCSP Responder failures would be disregarded in favor of connectivity.
+[2025-03-10T19:02:20.278+0000] {snowflake_utilz.py:13} INFO - Connected to snowflake successfully
+[2025-03-10T19:02:20.279+0000] {pipeline.py:56} INFO - ✅ Snowflake connection successful!
+[2025-03-10T19:02:20.376+0000] {snowflake_utilz.py:35} INFO - connection is closed
+[2025-03-10T19:02:20.377+0000] {connection.py:810} INFO - closed
+[2025-03-10T19:02:20.450+0000] {connection.py:816} INFO - No async queries seem to be running, deleting session
+[2025-03-10T19:02:20.537+0000] {snowflake_utilz.py:38} INFO - SQLAlchemy engine disposed
+[2025-03-10T19:02:20.538+0000] {python.py:237} INFO - Done. Returned value was: None
+[2025-03-10T19:02:20.539+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2025-03-10T19:02:20.547+0000] {taskinstance.py:1205} INFO - Marking task as SUCCESS. dag_id=sales_pipeline, task_id=test_snowflake_connection, execution_date=20250310T190047, start_date=20250310T190218, end_date=20250310T190220
+[2025-03-10T19:02:20.575+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 0
+[2025-03-10T19:02:20.594+0000] {taskinstance.py:3482} INFO - 2 downstream tasks scheduled from follow-on schedule check
+[2025-03-10T19:02:20.595+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

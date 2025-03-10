@@ -1,0 +1,1 @@
+[2025-03-10T18:47:45.315+0000] {task_context_logger.py:104} ERROR - Executor reports task instance <TaskInstance: sales_pipeline.ingest_erp_data scheduled__2025-03-10T18:30:00+00:00 [queued]> finished (failed) although the task says it's queued. (Info: None) Was the task killed externally?
