@@ -1,0 +1,59 @@
+version: 2
+
+models:
+  - name: crm_prd_info
+    description: "Product details extracted and transformed from CRM data."
+    columns:
+      - name: product_id
+        description: "Primary key for the product table"
+        data_type: INT
+        tests:
+          - unique
+          - not_null
+
+      - name: category_id
+        description: "Category ID extracted from prd_key"
+        data_type: VARCHAR(10)
+        tests:
+          - not_null
+
+      - name: product_key
+        description: "Product key extracted from prd_key"
+        data_type: VARCHAR(50)
+        tests:
+          - not_null
+
+      - name: product_number
+        description: "Product number/name"
+        data_type: VARCHAR(100)
+        tests:
+          - not_null
+
+      - name: product_cost
+        description: "Cost of the product (defaulted to 0 if NULL)"
+        data_type: DECIMAL(10,2)
+        tests:
+          - not_null
+          - dbt_expectations.expect_column_values_to_be_between:
+              min_value: 0
+
+      - name: product_line
+        description: "Product category based on prd_line"
+        data_type: VARCHAR(50)
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['Mountain', 'Road', 'Other sales', 'Touring', 'n/a']
+
+      - name: start_date
+        description: "Start date of the product"
+        data_type: DATE
+        tests:
+          - not_null
+
+      - name: end_date
+        description: "End date of the product"
+        data_type: DATE
+        tests:
+          - dbt_expectations.expect_column_values_to_be_increasing:
+              strictly: false

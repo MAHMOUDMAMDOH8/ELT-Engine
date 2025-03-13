@@ -1,0 +1,65 @@
+version: 2
+
+models:
+  - name: crm_salse_details
+    description: "Sales transactions data transformed from CRM sales details."
+    columns:
+      - name: order_number
+        description: "Unique sales order number"
+        data_type: VARCHAR
+        tests:
+          - not_null
+
+      - name: product_key
+        description: "Key identifying the product"
+        data_type: VARCHAR
+        tests:
+          - not_null
+
+      - name: customer_id
+        description: "Customer identifier"
+        data_type: VARCHAR
+        tests:
+          - not_null
+
+      - name: order_date
+        description: "Date when the order was placed"
+        data_type: DATE
+        tests:
+          - not_null
+
+      - name: ship_date
+        description: "Date when the order was shipped"
+        data_type: DATE
+        tests:
+          - not_null
+
+      - name: due_date
+        description: "Due date for the order"
+        data_type: DATE
+        tests:
+          - not_null
+
+      - name: sales
+        description: "Total sales amount (calculated if missing)"
+        data_type: DECIMAL(10,2)
+        tests:
+          - not_null
+          - dbt_expectations.expect_column_values_to_be_between:
+              min_value: 0.01
+
+      - name: quantity
+        description: "Number of units sold"
+        data_type: INT
+        tests:
+          - not_null
+          - dbt_expectations.expect_column_values_to_be_between:
+              min_value: 1
+
+      - name: price
+        description: "Unit price of the product"
+        data_type: DECIMAL(10,2)
+        tests:
+          - not_null
+          - dbt_expectations.expect_column_values_to_be_between:
+              min_value: 0.01

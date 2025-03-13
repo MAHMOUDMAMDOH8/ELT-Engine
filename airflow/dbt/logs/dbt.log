@@ -27,3 +27,51 @@ Happy modeling!
 [0m12:32:26.075373 [debug] [MainThread]: Command `dbt init` succeeded at 12:32:26.075269 after 41.90 seconds
 [0m12:32:26.075796 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x789e42b7ec90>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x789e436464b0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x789e429cff80>]}
 [0m12:32:26.076331 [debug] [MainThread]: Flushing usage events
+[0m13:56:02.321402 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7ccd0253e300>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7ccd022a9820>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7ccd022aa540>]}
+
+
+============================== 13:56:02.324713 | 5345792e-9817-4121-a021-b947ad7ef801 ==============================
+[0m13:56:02.324713 [info ] [MainThread]: Running with dbt=1.9.3
+[0m13:56:02.325295 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'write_json': 'True', 'log_cache_events': 'False', 'partial_parse': 'True', 'cache_selected_only': 'False', 'warn_error': 'None', 'fail_fast': 'False', 'debug': 'False', 'log_path': 'logs', 'profiles_dir': '/home/ma7moud/Project/ELT-Engine/airflow/dbt', 'version_check': 'True', 'use_colors': 'True', 'use_experimental_parser': 'False', 'empty': 'None', 'quiet': 'False', 'no_print': 'None', 'log_format': 'default', 'static_parser': 'True', 'invocation_command': 'dbt init', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'target_path': 'None', 'introspect': 'True', 'send_anonymous_usage_stats': 'True'}
+[0m13:56:06.946707 [debug] [MainThread]: Starter project path: /home/ma7moud/.local/lib/python3.12/site-packages/dbt/include/starter_project
+[0m13:56:06.949264 [info ] [MainThread]: 
+Your new dbt project "sales" was created!
+
+For more information on how to configure the profiles.yml file,
+please consult the dbt documentation here:
+
+  https://docs.getdbt.com/docs/configure-your-profile
+
+One more thing:
+
+Need help? Don't hesitate to reach out to us via GitHub issues or on Slack:
+
+  https://community.getdbt.com/
+
+Happy modeling!
+
+[0m13:56:06.949743 [info ] [MainThread]: Setting up your profile.
+[0m13:57:45.854654 [info ] [MainThread]: Profile sales written to /home/ma7moud/Project/ELT-Engine/airflow/dbt/profiles.yml using target's profile_template.yml and your supplied values. Run 'dbt debug' to validate the connection.
+[0m13:57:45.857230 [debug] [MainThread]: Resource report: {"command_name": "init", "command_success": true, "command_wall_clock_time": 103.65203, "process_in_blocks": "0", "process_kernel_time": 0.170784, "process_mem_max_rss": "143692", "process_out_blocks": "96", "process_user_time": 1.805724}
+[0m13:57:45.858692 [debug] [MainThread]: Command `dbt init` succeeded at 13:57:45.858345 after 103.65 seconds
+[0m13:57:45.859493 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7ccd022a8230>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7cccf9ffbce0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7cccfa3adbb0>]}
+[0m13:57:45.860494 [debug] [MainThread]: Flushing usage events
+[0m13:57:46.589214 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m13:58:38.891747 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x78891812f9e0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x78891812f8c0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x788917faa2a0>]}
+
+
+============================== 13:58:38.895263 | 7a37a8dc-7791-4ade-a351-6761a176c2bc ==============================
+[0m13:58:38.895263 [info ] [MainThread]: Running with dbt=1.9.3
+[0m13:58:38.895950 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'log_cache_events': 'False', 'write_json': 'True', 'partial_parse': 'True', 'cache_selected_only': 'False', 'warn_error': 'None', 'debug': 'False', 'profiles_dir': '/home/ma7moud/Project/ELT-Engine/airflow/dbt', 'log_path': 'logs', 'fail_fast': 'False', 'version_check': 'True', 'use_colors': 'True', 'use_experimental_parser': 'False', 'no_print': 'None', 'quiet': 'False', 'empty': 'None', 'log_format': 'default', 'static_parser': 'True', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'introspect': 'True', 'target_path': 'None', 'invocation_command': 'dbt debug', 'send_anonymous_usage_stats': 'True'}
+[0m13:58:38.904511 [info ] [MainThread]: dbt version: 1.9.3
+[0m13:58:38.905030 [info ] [MainThread]: python version: 3.12.3
+[0m13:58:38.905518 [info ] [MainThread]: python path: /usr/bin/python3
+[0m13:58:38.905913 [info ] [MainThread]: os info: Linux-6.11.0-19-generic-x86_64-with-glibc2.39
+[0m13:58:38.910072 [error] [MainThread]: Encountered an error:
+Parsing Error
+  Env var required but not provided: 'SNOWFLAKE_ACCOUNT'
+[0m13:58:38.911883 [debug] [MainThread]: Resource report: {"command_name": "debug", "command_success": false, "command_wall_clock_time": 0.12569624, "process_in_blocks": "16", "process_kernel_time": 0.105281, "process_mem_max_rss": "87672", "process_out_blocks": "8", "process_user_time": 1.383694}
+[0m13:58:38.912832 [debug] [MainThread]: Command `dbt debug` failed at 13:58:38.912680 after 0.13 seconds
+[0m13:58:38.913470 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x788917fcfec0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x788917fa96a0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x788917fa8350>]}
+[0m13:58:38.914169 [debug] [MainThread]: Flushing usage events
+[0m13:58:39.458316 [debug] [MainThread]: An error was encountered while trying to flush usage events

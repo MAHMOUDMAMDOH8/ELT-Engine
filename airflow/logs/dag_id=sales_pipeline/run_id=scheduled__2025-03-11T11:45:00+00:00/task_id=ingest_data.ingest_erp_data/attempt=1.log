@@ -1,0 +1,39 @@
+[2025-03-11T12:00:05.021+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2025-03-11T12:00:05.043+0000] {taskinstance.py:2073} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: sales_pipeline.ingest_data.ingest_erp_data scheduled__2025-03-11T11:45:00+00:00 [queued]>
+[2025-03-11T12:00:05.051+0000] {taskinstance.py:2073} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: sales_pipeline.ingest_data.ingest_erp_data scheduled__2025-03-11T11:45:00+00:00 [queued]>
+[2025-03-11T12:00:05.051+0000] {taskinstance.py:2303} INFO - Starting attempt 1 of 1
+[2025-03-11T12:00:05.063+0000] {taskinstance.py:2327} INFO - Executing <Task(PythonOperator): ingest_data.ingest_erp_data> on 2025-03-11 11:45:00+00:00
+[2025-03-11T12:00:05.073+0000] {warnings.py:110} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:61: DeprecationWarning: This process (pid=161) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2025-03-11T12:00:05.075+0000] {standard_task_runner.py:63} INFO - Started process 165 to run task
+[2025-03-11T12:00:05.075+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'sales_pipeline', 'ingest_data.ingest_erp_data', 'scheduled__2025-03-11T11:45:00+00:00', '--job-id', '106', '--raw', '--subdir', 'DAGS_FOLDER/pipeline.py', '--cfg-path', '/tmp/tmptalos6my']
+[2025-03-11T12:00:05.078+0000] {standard_task_runner.py:91} INFO - Job 106: Subtask ingest_data.ingest_erp_data
+[2025-03-11T12:00:05.117+0000] {task_command.py:426} INFO - Running <TaskInstance: sales_pipeline.ingest_data.ingest_erp_data scheduled__2025-03-11T11:45:00+00:00 [running]> on host 2b35ac7f54da
+[2025-03-11T12:00:05.209+0000] {taskinstance.py:2644} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='Mahmoud' AIRFLOW_CTX_DAG_ID='sales_pipeline' AIRFLOW_CTX_TASK_ID='ingest_data.ingest_erp_data' AIRFLOW_CTX_EXECUTION_DATE='2025-03-11T11:45:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-03-11T11:45:00+00:00'
+[2025-03-11T12:00:05.210+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2025-03-11T12:00:05.229+0000] {pipeline.py:96} INFO - /opt/***/Source/source_crm
+[2025-03-11T12:00:05.310+0000] {warnings.py:110} WARNING - /home/***/.local/lib/python3.12/site-packages/snowflake/connector/options.py:108: UserWarning: You have an incompatible version of 'pyarrow' installed (19.0.1), please install a version that adheres to: 'pyarrow<19.0.0; extra == "pandas"'
+  warn_incompatible_dep(
+
+[2025-03-11T12:00:05.410+0000] {connection.py:423} INFO - Snowflake Connector for Python Version: 3.14.0, Python Version: 3.12.2, Platform: Linux-6.11.0-19-generic-x86_64-with-glibc2.36
+[2025-03-11T12:00:05.411+0000] {connection.py:1226} INFO - Connecting to GLOBAL Snowflake domain
+[2025-03-11T12:00:05.411+0000] {connection.py:1315} INFO - This connection is in OCSP Fail Open Mode. TLS Certificates would be checked for validity and revocation status. Any other Certificate Revocation related exceptions or OCSP Responder failures would be disregarded in favor of connectivity.
+[2025-03-11T12:00:06.195+0000] {snowflake_utilz.py:13} INFO - Connected to snowflake successfully
+[2025-03-11T12:00:06.203+0000] {snowflake_utilz.py:26} INFO - Connected to PostgreSQL database successfully
+[2025-03-11T12:00:06.203+0000] {pipeline.py:104} INFO - 📥 Ingesting ERP data...
+[2025-03-11T12:00:06.204+0000] {ingest_data.py:12} INFO - File CUST_AZ12.csv has already been processed. Skipping ingestion.
+[2025-03-11T12:00:06.205+0000] {ingest_data.py:12} INFO - File LOC_A101.csv has already been processed. Skipping ingestion.
+[2025-03-11T12:00:06.205+0000] {ingest_data.py:12} INFO - File PX_CAT_G1V2.csv has already been processed. Skipping ingestion.
+[2025-03-11T12:00:06.305+0000] {snowflake_utilz.py:35} INFO - connection is closed
+[2025-03-11T12:00:06.305+0000] {connection.py:810} INFO - closed
+[2025-03-11T12:00:06.376+0000] {connection.py:816} INFO - No async queries seem to be running, deleting session
+[2025-03-11T12:00:06.460+0000] {snowflake_utilz.py:38} INFO - SQLAlchemy engine disposed
+[2025-03-11T12:00:06.461+0000] {snowflake_utilz.py:35} INFO - connection is closed
+[2025-03-11T12:00:06.462+0000] {snowflake_utilz.py:38} INFO - SQLAlchemy engine disposed
+[2025-03-11T12:00:06.462+0000] {python.py:237} INFO - Done. Returned value was: None
+[2025-03-11T12:00:06.462+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2025-03-11T12:00:06.472+0000] {taskinstance.py:1205} INFO - Marking task as SUCCESS. dag_id=sales_pipeline, task_id=ingest_data.ingest_erp_data, execution_date=20250311T114500, start_date=20250311T120005, end_date=20250311T120006
+[2025-03-11T12:00:06.531+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 0
+[2025-03-11T12:00:06.551+0000] {taskinstance.py:3482} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2025-03-11T12:00:06.552+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

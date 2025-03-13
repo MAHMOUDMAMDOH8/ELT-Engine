@@ -1,0 +1,19 @@
+version: 2
+
+models:
+  - name: ERP_PX_CAT
+    description: "Processes product category data from ERP."
+    columns:
+      - name: category_id
+        description: "Unique identifier for the category."
+        tests:
+          - not_null
+
+      - name: category
+        description: "Main product category."
+
+      - name: sub_category
+        description: "Subcategory of the product."
+
+      - name: maintenance
+        description: "Maintenance details related to the category."

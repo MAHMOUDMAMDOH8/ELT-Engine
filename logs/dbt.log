@@ -1,0 +1,21 @@
+[0m14:13:58.606281 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x782ab4649850>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x782ab4713800>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x782ab46497f0>]}
+
+
+============================== 14:13:58.610189 | d56f2fe2-f354-418c-98fd-d3a7bac7e3c0 ==============================
+[0m14:13:58.610189 [info ] [MainThread]: Running with dbt=1.9.3
+[0m14:13:58.610881 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'write_json': 'True', 'log_cache_events': 'False', 'partial_parse': 'True', 'cache_selected_only': 'False', 'profiles_dir': '/home/ma7moud/.dbt', 'version_check': 'True', 'debug': 'False', 'log_path': 'logs', 'fail_fast': 'False', 'warn_error': 'None', 'use_colors': 'True', 'use_experimental_parser': 'False', 'no_print': 'None', 'quiet': 'False', 'empty': 'None', 'log_format': 'default', 'invocation_command': 'dbt debug', 'static_parser': 'True', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'target_path': 'None', 'introspect': 'True', 'send_anonymous_usage_stats': 'True'}
+[0m14:13:58.619436 [info ] [MainThread]: dbt version: 1.9.3
+[0m14:13:58.620029 [info ] [MainThread]: python version: 3.12.3
+[0m14:13:58.620555 [info ] [MainThread]: python path: /usr/bin/python3
+[0m14:13:58.621107 [info ] [MainThread]: os info: Linux-6.11.0-19-generic-x86_64-with-glibc2.39
+[0m14:13:58.685409 [info ] [MainThread]: Using profiles dir at /home/ma7moud/.dbt
+[0m14:13:58.685960 [info ] [MainThread]: Using profiles.yml file at /home/ma7moud/.dbt/profiles.yml
+[0m14:13:58.686545 [info ] [MainThread]: Using dbt_project.yml file at /home/ma7moud/Project/ELT-Engine/dbt_project.yml
+[0m14:13:58.687072 [error] [MainThread]: Encountered an error:
+Internal Error
+  Profile should not be None if loading profile completed
+[0m14:13:58.688091 [debug] [MainThread]: Resource report: {"command_name": "debug", "command_success": false, "command_wall_clock_time": 0.19441415, "process_in_blocks": "0", "process_kernel_time": 0.128984, "process_mem_max_rss": "91916", "process_out_blocks": "8", "process_user_time": 1.429745}
+[0m14:13:58.688771 [debug] [MainThread]: Command `dbt debug` failed at 14:13:58.688663 after 0.20 seconds
+[0m14:13:58.689211 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x782ab4470b00>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x782ab4648fb0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x782ab4358710>]}
+[0m14:13:58.689687 [debug] [MainThread]: Flushing usage events
+[0m14:13:59.410385 [debug] [MainThread]: An error was encountered while trying to flush usage events

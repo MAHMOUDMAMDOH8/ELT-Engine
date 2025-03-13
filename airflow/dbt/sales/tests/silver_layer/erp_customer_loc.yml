@@ -1,0 +1,13 @@
+version: 2
+
+models:
+  - name: erp_customer_loc
+    description: "Cleans and processes customer location data from ERP."
+    columns:
+      - name: customer_id
+        description: "Unique customer identifier, with hyphens removed."
+        tests:
+          - not_null
+
+      - name: country
+        description: "Standardized country name based on codes."

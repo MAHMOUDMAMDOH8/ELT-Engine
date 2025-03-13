@@ -1,0 +1,46 @@
+version: 2
+
+models:
+  - name: crm_cust_info
+    description: "Customer data from CRM system"
+    columns:
+      - name: ID
+        description: "Primary key for customers table"
+        data_type: INT
+        tests: 
+          - unique
+          - not_null
+
+      - name: CUSTOMER_KEY
+        description: "Unique key identifying customers"
+        data_type: VARCHAR(30)
+        tests: 
+          - not_null
+
+      - name: FIRST_NAME
+        description: "Customer's first name"
+        data_type: VARCHAR(50)
+        tests: 
+          - not_null
+
+      - name: LAST_NAME
+        description: "Customer's last name"
+        data_type: VARCHAR(50)
+        tests: 
+          - not_null
+
+      - name: MARITAL_STATUS
+        description: "Customer's marital status (e.g., Single, Married)"
+        data_type: VARCHAR(10)
+        tests: 
+          - not_null
+
+      - name: GENDER
+        description: "Customer's gender (Male, Female, etc.)"
+        data_type: VARCHAR(10)
+        tests: 
+          - not_null
+
+      - name: CST_CREATE_DATE
+        description: "Customer creation date"
+        data_type: DATE

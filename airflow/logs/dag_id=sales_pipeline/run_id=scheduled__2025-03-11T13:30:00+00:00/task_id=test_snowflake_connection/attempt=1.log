@@ -1,0 +1,51 @@
+[2025-03-11T18:11:49.638+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2025-03-11T18:11:49.666+0000] {taskinstance.py:2073} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: sales_pipeline.test_snowflake_connection scheduled__2025-03-11T13:30:00+00:00 [queued]>
+[2025-03-11T18:11:49.675+0000] {taskinstance.py:2073} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: sales_pipeline.test_snowflake_connection scheduled__2025-03-11T13:30:00+00:00 [queued]>
+[2025-03-11T18:11:49.675+0000] {taskinstance.py:2303} INFO - Starting attempt 1 of 1
+[2025-03-11T18:11:49.690+0000] {taskinstance.py:2327} INFO - Executing <Task(PythonOperator): test_snowflake_connection> on 2025-03-11 13:30:00+00:00
+[2025-03-11T18:11:49.698+0000] {warnings.py:110} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:61: DeprecationWarning: This process (pid=424) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2025-03-11T18:11:49.700+0000] {standard_task_runner.py:63} INFO - Started process 430 to run task
+[2025-03-11T18:11:49.700+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'sales_pipeline', 'test_snowflake_connection', 'scheduled__2025-03-11T13:30:00+00:00', '--job-id', '136', '--raw', '--subdir', 'DAGS_FOLDER/pipeline.py', '--cfg-path', '/tmp/tmpw4e15arv']
+[2025-03-11T18:11:49.702+0000] {standard_task_runner.py:91} INFO - Job 136: Subtask test_snowflake_connection
+[2025-03-11T18:11:49.741+0000] {task_command.py:426} INFO - Running <TaskInstance: sales_pipeline.test_snowflake_connection scheduled__2025-03-11T13:30:00+00:00 [running]> on host 2b35ac7f54da
+[2025-03-11T18:11:49.837+0000] {taskinstance.py:2644} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='Mahmoud' AIRFLOW_CTX_DAG_ID='sales_pipeline' AIRFLOW_CTX_TASK_ID='test_snowflake_connection' AIRFLOW_CTX_EXECUTION_DATE='2025-03-11T13:30:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-03-11T13:30:00+00:00'
+[2025-03-11T18:11:49.838+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2025-03-11T18:11:49.928+0000] {warnings.py:110} WARNING - /home/***/.local/lib/python3.12/site-packages/snowflake/connector/options.py:108: UserWarning: You have an incompatible version of 'pyarrow' installed (19.0.1), please install a version that adheres to: 'pyarrow<19.0.0; extra == "pandas"'
+  warn_incompatible_dep(
+
+[2025-03-11T18:11:50.022+0000] {connection.py:423} INFO - Snowflake Connector for Python Version: 3.14.0, Python Version: 3.12.2, Platform: Linux-6.11.0-19-generic-x86_64-with-glibc2.36
+[2025-03-11T18:11:50.023+0000] {connection.py:1226} INFO - Connecting to GLOBAL Snowflake domain
+[2025-03-11T18:11:50.023+0000] {connection.py:1315} INFO - This connection is in OCSP Fail Open Mode. TLS Certificates would be checked for validity and revocation status. Any other Certificate Revocation related exceptions or OCSP Responder failures would be disregarded in favor of connectivity.
+[2025-03-11T18:11:50.027+0000] {connectionpool.py:824} WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<snowflake.connector.vendored.urllib3.connection.HTTPSConnection object at 0x729c121c7d70>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution')': /session/v1/login-request?request_id=ae9addec-58f5-4c6d-9149-685314faf776&databaseName=sales&schemaName=bronze_layer&warehouse=COMPUTE_WH&request_guid=f16c3f7c-fc83-41b6-8eba-28bf37e0c3ac
+[2025-03-11T18:11:51.051+0000] {connectionpool.py:824} WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<snowflake.connector.vendored.urllib3.connection.HTTPSConnection object at 0x729c117cd8b0>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution')': /session/v1/login-request?request_id=e5213c42-0915-42b6-9621-3e83889b880a&databaseName=sales&schemaName=bronze_layer&warehouse=COMPUTE_WH&request_guid=79f5bec2-674d-47b2-a42a-0b26ba2edb82
+[2025-03-11T18:11:51.056+0000] {snowflake_utilz.py:16} INFO - error while connecting to snowflake : (snowflake.connector.errors.OperationalError) 250001: 250001: Could not connect to Snowflake backend after 2 attempt(s).Aborting
+(Background on this error at: https://sqlalche.me/e/14/e3q8)
+[2025-03-11T18:11:51.057+0000] {pipeline.py:51} ERROR - ❌ Snowflake connection failed!
+[2025-03-11T18:11:51.057+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2025-03-11T18:11:51.057+0000] {taskinstance.py:2890} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 465, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 432, in _execute_callable
+    return execute_callable(context=context, **execute_callable_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 400, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 235, in execute
+    return_value = self.execute_callable()
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 252, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/airflow/dags/pipeline.py", line 52, in test_snowflake_connection
+    raise Exception("Snowflake connection could not be established.")
+Exception: Snowflake connection could not be established.
+[2025-03-11T18:11:51.070+0000] {taskinstance.py:1205} INFO - Marking task as FAILED. dag_id=sales_pipeline, task_id=test_snowflake_connection, execution_date=20250311T133000, start_date=20250311T181149, end_date=20250311T181151
+[2025-03-11T18:11:51.086+0000] {standard_task_runner.py:110} ERROR - Failed to execute job 136 for task test_snowflake_connection (Snowflake connection could not be established.; 430)
+[2025-03-11T18:11:51.119+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 1
+[2025-03-11T18:11:51.141+0000] {taskinstance.py:3482} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2025-03-11T18:11:51.145+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

@@ -1,0 +1,22 @@
+version: 2
+
+models:
+  - name: erp_cust
+    description: "Cleans and processes customer data from ERP."
+    columns:
+      - name: customer_id
+        description: "Unique identifier for customers, cleansed of 'NAS%' prefix."
+        tests:
+          - not_null
+
+      - name: birth_date
+        description: "Customer's birth date, ensuring it is not in the future."
+        tests:
+          - dbt_expectations.expect_column_values_to_be_of_type:
+              column_type: date
+
+      - name: Gender
+        description: "Standardized gender values: 'Male', 'Female', or 'n/a'."
+        tests:
+          - accepted_values:
+              values: ['Male', 'Female', 'n/a']

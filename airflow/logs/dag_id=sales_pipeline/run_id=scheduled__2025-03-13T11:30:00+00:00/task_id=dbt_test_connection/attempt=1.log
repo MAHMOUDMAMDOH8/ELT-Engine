@@ -1,0 +1,67 @@
+[2025-03-13T11:45:08.668+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2025-03-13T11:45:08.689+0000] {taskinstance.py:2073} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: sales_pipeline.dbt_test_connection scheduled__2025-03-13T11:30:00+00:00 [queued]>
+[2025-03-13T11:45:08.698+0000] {taskinstance.py:2073} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: sales_pipeline.dbt_test_connection scheduled__2025-03-13T11:30:00+00:00 [queued]>
+[2025-03-13T11:45:08.699+0000] {taskinstance.py:2303} INFO - Starting attempt 1 of 1
+[2025-03-13T11:45:08.710+0000] {taskinstance.py:2327} INFO - Executing <Task(BashOperator): dbt_test_connection> on 2025-03-13 11:30:00+00:00
+[2025-03-13T11:45:08.720+0000] {warnings.py:110} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:61: DeprecationWarning: This process (pid=1327) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2025-03-13T11:45:08.721+0000] {standard_task_runner.py:63} INFO - Started process 1329 to run task
+[2025-03-13T11:45:08.721+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'sales_pipeline', 'dbt_test_connection', 'scheduled__2025-03-13T11:30:00+00:00', '--job-id', '164', '--raw', '--subdir', 'DAGS_FOLDER/pipeline.py', '--cfg-path', '/tmp/tmpcm3n88w0']
+[2025-03-13T11:45:08.723+0000] {standard_task_runner.py:91} INFO - Job 164: Subtask dbt_test_connection
+[2025-03-13T11:45:08.766+0000] {task_command.py:426} INFO - Running <TaskInstance: sales_pipeline.dbt_test_connection scheduled__2025-03-13T11:30:00+00:00 [running]> on host 2b35ac7f54da
+[2025-03-13T11:45:08.849+0000] {taskinstance.py:2644} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='Mahmoud' AIRFLOW_CTX_DAG_ID='sales_pipeline' AIRFLOW_CTX_TASK_ID='dbt_test_connection' AIRFLOW_CTX_EXECUTION_DATE='2025-03-13T11:30:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-03-13T11:30:00+00:00'
+[2025-03-13T11:45:08.850+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2025-03-13T11:45:08.863+0000] {subprocess.py:63} INFO - Tmp dir root location: /tmp
+[2025-03-13T11:45:08.864+0000] {subprocess.py:75} INFO - Running command: ['/usr/bin/bash', '-c', 'dbt debug --profiles-dir /opt/***/dbt --project-dir /opt/***/dbt/sales']
+[2025-03-13T11:45:08.882+0000] {subprocess.py:86} INFO - Output:
+[2025-03-13T11:45:11.221+0000] {subprocess.py:93} INFO - [0m11:45:11  Running with dbt=1.9.3
+[2025-03-13T11:45:11.285+0000] {subprocess.py:93} INFO - [0m11:45:11  dbt version: 1.9.3
+[2025-03-13T11:45:11.285+0000] {subprocess.py:93} INFO - [0m11:45:11  python version: 3.12.2
+[2025-03-13T11:45:11.286+0000] {subprocess.py:93} INFO - [0m11:45:11  python path: /home/***/.local/bin/python
+[2025-03-13T11:45:11.286+0000] {subprocess.py:93} INFO - [0m11:45:11  os info: Linux-6.11.0-19-generic-x86_64-with-glibc2.36
+[2025-03-13T11:45:11.762+0000] {subprocess.py:93} INFO - /home/***/.local/lib/python3.12/site-packages/snowflake/connector/options.py:108: UserWarning: You have an incompatible version of 'pyarrow' installed (19.0.1), please install a version that adheres to: 'pyarrow<19.0.0; extra == "pandas"'
+[2025-03-13T11:45:11.762+0000] {subprocess.py:93} INFO -   warn_incompatible_dep(
+[2025-03-13T11:45:12.043+0000] {subprocess.py:93} INFO - [0m11:45:12  Using profiles dir at /opt/***/dbt
+[2025-03-13T11:45:12.044+0000] {subprocess.py:93} INFO - [0m11:45:12  Using profiles.yml file at /opt/***/dbt/profiles.yml
+[2025-03-13T11:45:12.044+0000] {subprocess.py:93} INFO - [0m11:45:12  Using dbt_project.yml file at /opt/***/dbt/sales/dbt_project.yml
+[2025-03-13T11:45:12.045+0000] {subprocess.py:93} INFO - [0m11:45:12  adapter type: snowflake
+[2025-03-13T11:45:12.046+0000] {subprocess.py:93} INFO - [0m11:45:12  adapter version: 1.9.2
+[2025-03-13T11:45:12.169+0000] {subprocess.py:93} INFO - [0m11:45:12  Configuration:
+[2025-03-13T11:45:12.169+0000] {subprocess.py:93} INFO - [0m11:45:12    profiles.yml file [[32mOK found and valid[0m]
+[2025-03-13T11:45:12.169+0000] {subprocess.py:93} INFO - [0m11:45:12    dbt_project.yml file [[32mOK found and valid[0m]
+[2025-03-13T11:45:12.170+0000] {subprocess.py:93} INFO - [0m11:45:12  Required dependencies:
+[2025-03-13T11:45:12.175+0000] {subprocess.py:93} INFO - [0m11:45:12   - git [[32mOK found[0m]
+[2025-03-13T11:45:12.175+0000] {subprocess.py:93} INFO - 
+[2025-03-13T11:45:12.176+0000] {subprocess.py:93} INFO - [0m11:45:12  Connection:
+[2025-03-13T11:45:12.176+0000] {subprocess.py:93} INFO - [0m11:45:12    account: lxdzptn-eu09470
+[2025-03-13T11:45:12.177+0000] {subprocess.py:93} INFO - [0m11:45:12    user: momod
+[2025-03-13T11:45:12.178+0000] {subprocess.py:93} INFO - [0m11:45:12    database: sales
+[2025-03-13T11:45:12.179+0000] {subprocess.py:93} INFO - [0m11:45:12    warehouse: sales_WH
+[2025-03-13T11:45:12.179+0000] {subprocess.py:93} INFO - [0m11:45:12    role: ACCOUNTADMIN
+[2025-03-13T11:45:12.180+0000] {subprocess.py:93} INFO - [0m11:45:12    schema: layer
+[2025-03-13T11:45:12.180+0000] {subprocess.py:93} INFO - [0m11:45:12    authenticator: None
+[2025-03-13T11:45:12.181+0000] {subprocess.py:93} INFO - [0m11:45:12    oauth_client_id: None
+[2025-03-13T11:45:12.181+0000] {subprocess.py:93} INFO - [0m11:45:12    query_tag: None
+[2025-03-13T11:45:12.182+0000] {subprocess.py:93} INFO - [0m11:45:12    client_session_keep_alive: False
+[2025-03-13T11:45:12.182+0000] {subprocess.py:93} INFO - [0m11:45:12    host: None
+[2025-03-13T11:45:12.183+0000] {subprocess.py:93} INFO - [0m11:45:12    port: None
+[2025-03-13T11:45:12.183+0000] {subprocess.py:93} INFO - [0m11:45:12    proxy_host: None
+[2025-03-13T11:45:12.184+0000] {subprocess.py:93} INFO - [0m11:45:12    proxy_port: None
+[2025-03-13T11:45:12.185+0000] {subprocess.py:93} INFO - [0m11:45:12    protocol: None
+[2025-03-13T11:45:12.186+0000] {subprocess.py:93} INFO - [0m11:45:12    connect_retries: 1
+[2025-03-13T11:45:12.186+0000] {subprocess.py:93} INFO - [0m11:45:12    connect_timeout: None
+[2025-03-13T11:45:12.187+0000] {subprocess.py:93} INFO - [0m11:45:12    retry_on_database_errors: False
+[2025-03-13T11:45:12.187+0000] {subprocess.py:93} INFO - [0m11:45:12    retry_all: False
+[2025-03-13T11:45:12.188+0000] {subprocess.py:93} INFO - [0m11:45:12    insecure_mode: False
+[2025-03-13T11:45:12.188+0000] {subprocess.py:93} INFO - [0m11:45:12    reuse_connections: True
+[2025-03-13T11:45:12.189+0000] {subprocess.py:93} INFO - [0m11:45:12  Registered adapter: snowflake=1.9.2
+[2025-03-13T11:45:13.053+0000] {subprocess.py:93} INFO - [0m11:45:13    Connection test: [[32mOK connection ok[0m]
+[2025-03-13T11:45:13.053+0000] {subprocess.py:93} INFO - 
+[2025-03-13T11:45:13.053+0000] {subprocess.py:93} INFO - [0m11:45:13  [32mAll checks passed![0m
+[2025-03-13T11:45:14.475+0000] {subprocess.py:97} INFO - Command exited with return code 0
+[2025-03-13T11:45:14.476+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2025-03-13T11:45:14.497+0000] {taskinstance.py:1205} INFO - Marking task as SUCCESS. dag_id=sales_pipeline, task_id=dbt_test_connection, execution_date=20250313T113000, start_date=20250313T114508, end_date=20250313T114514
+[2025-03-13T11:45:14.543+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 0
+[2025-03-13T11:45:14.557+0000] {taskinstance.py:3482} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2025-03-13T11:45:14.558+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

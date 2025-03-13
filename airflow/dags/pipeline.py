@@ -4,6 +4,7 @@ from airflow import DAG
 from airflow.operators.python_operator import PythonOperator
 from airflow.utils.dates import days_ago
 from airflow.utils.task_group import TaskGroup
+from airflow.operators.bash import BashOperator
 from dotenv import load_dotenv
 
 
@@ -120,15 +121,51 @@ with dag:
         task_id='test_snowflake_connection',
         python_callable=test_snowflake_connection
     )
+    with TaskGroup('ingest_data')as ingst_data:
+        ingest_crm_data_task = PythonOperator(
+            task_id='ingest_crm_data',
+            python_callable=ingest_crm_data
+        )
 
-    ingest_crm_data_task = PythonOperator(
-        task_id='ingest_crm_data',
-        python_callable=ingest_crm_data
+        ingest_erp_data_task = PythonOperator(
+            task_id='ingest_erp_data',
+            python_callable=ingest_erp_data
+        )
+
+    test_dbt_connection = BashOperator(
+        task_id='dbt_test_connection',
+        bash_command='dbt debug --profiles-dir /opt/airflow/dbt --project-dir /opt/airflow/dbt/sales'
     )
 
-    ingest_erp_data_task = PythonOperator(
-        task_id='ingest_erp_data',
-        python_callable=ingest_erp_data
-    )
+    with TaskGroup('silver_layer') as transfer_data :
+        models = [
+            'crm_cust_info',
+            'crm_prd_info',
+            'crm_salse_details',
+            'erp_cust',
+            'erp_customer_loc',
+            'ERP_PX_CAT'
+        ]
+        dbt_tasks = []
+        for model in models:
+            dbt_task = BashOperator(
+                task_id = f'{model}',
+                bash_command=f'dbt run --full-refresh --profiles-dir /opt/airflow/dbt --project-dir /opt/airflow/dbt/sales --models {model}'
+            )
 
-    test_connection_task >> [ingest_crm_data_task, ingest_erp_data_task]
+    with TaskGroup('test_validating_data_silver_layer') as test_validating_data_silver_layer :
+        models = [
+            'crm_cust_info',
+            'crm_prd_info',
+            'crm_salse_details',
+            'erp_cust',
+            'erp_customer_loc',
+            'ERP_PX_CAT'
+        ]
+        dbt_tasks = []
+        for model in models:
+            dbt_task = BashOperator(
+                task_id = f'{model}',
+                bash_command=f'dbt run --full-refresh --profiles-dir /opt/airflow/dbt --project-dir /opt/airflow/dbt/sales --models {model}'
+            )
+    test_connection_task >> ingst_data  >> test_dbt_connection >> transfer_data >> test_validating_data_silver_layer
