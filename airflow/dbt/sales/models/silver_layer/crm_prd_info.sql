@@ -12,7 +12,7 @@ with product_cte as (
         p.prd_id AS product_id,
         REPLACE(SUBSTR(p.prd_key, 1, 5), '-', '_') AS category_id,
         SUBSTR(p.prd_key, 7, LENGTH(p.prd_key)) AS product_key,
-        p.prd_nm AS product_number,
+        p.prd_nm AS product_name,
         COALESCE(p.prd_cost, 0) AS product_cost,
         CASE UPPER(TRIM(p.prd_line))
             WHEN 'M' THEN 'Mountain'

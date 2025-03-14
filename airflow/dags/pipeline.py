@@ -166,6 +166,33 @@ with dag:
         for model in models:
             dbt_task = BashOperator(
                 task_id = f'{model}',
+                bash_command=f'dbt test --profiles-dir /opt/airflow/dbt --project-dir /opt/airflow/dbt/sales --models {model}'
+            )
+    with TaskGroup('Gold_layer') as modeling_data :
+        models = [
+            'Dim_customer',
+            'Dim_date',
+            'Dim_product',
+            'Fact_sales'
+        ]
+        dbt_tasks = []
+        for model in models:
+            dbt_task = BashOperator(
+                task_id = f'{model}',
                 bash_command=f'dbt run --full-refresh --profiles-dir /opt/airflow/dbt --project-dir /opt/airflow/dbt/sales --models {model}'
             )
-    test_connection_task >> ingst_data  >> test_dbt_connection >> transfer_data >> test_validating_data_silver_layer
+    
+    with TaskGroup('test_quality') as test_quality :
+        models = [
+            'Dim_customer',
+            'Dim_date',
+            'Dim_product',
+            'Fact_sales'
+        ]
+        dbt_tasks = []
+        for model in models:
+            dbt_task = BashOperator(
+                task_id = f'{model}',
+                bash_command=f'dbt test  --profiles-dir /opt/airflow/dbt --project-dir /opt/airflow/dbt/sales --models {model}'
+            )
+    test_connection_task >> ingst_data  >> test_dbt_connection >> transfer_data >> test_validating_data_silver_layer >> modeling_data >>  test_quality

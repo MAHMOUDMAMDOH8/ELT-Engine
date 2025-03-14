@@ -1,0 +1,37 @@
+version: 2
+
+models:
+  - name: Dim_product
+    description: "Product dimension view with enriched category details."
+    columns:
+      - name: product_id
+        description: "Unique identifier for each product."
+        tests:
+          - not_null
+          - unique
+
+      - name: product_number
+        description: "Product key used in CRM systems."
+        tests:
+          - not_null
+
+      - name: product_name
+        description: "Product name as listed in CRM."
+
+      - name: category
+        description: "Main product category."
+
+      - name: sub_category
+        description: "Sub-category within the main category."
+
+      - name: maintenance
+        description: "Indicates if the product requires maintenance."
+
+      - name: product_cost
+        description: "Cost of the product."
+
+      - name: product_line
+        description: "Line of products this belongs to."
+
+      - name: start_date
+        description: "Date when the product was first added."

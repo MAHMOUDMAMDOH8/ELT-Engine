@@ -1,8 +1,8 @@
 {{
     config(
         materialized='incremental',
-        unique_key='cst_id',
-        indexes=[{"columns": ['cst_id'], "unique": true}],
+        unique_key='ID',
+        indexes=[{"columns": ['ID'], "unique": true}],
         target_schema='silver'
     )
 }}

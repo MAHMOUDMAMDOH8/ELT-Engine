@@ -1,0 +1,43 @@
+[2025-03-14T01:04:55.673+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2025-03-14T01:04:55.706+0000] {taskinstance.py:2073} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: sales_pipeline.test_quality.Dim_product scheduled__2025-03-14T00:45:00+00:00 [queued]>
+[2025-03-14T01:04:55.718+0000] {taskinstance.py:2073} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: sales_pipeline.test_quality.Dim_product scheduled__2025-03-14T00:45:00+00:00 [queued]>
+[2025-03-14T01:04:55.718+0000] {taskinstance.py:2303} INFO - Starting attempt 1 of 1
+[2025-03-14T01:04:55.797+0000] {taskinstance.py:2327} INFO - Executing <Task(BashOperator): test_quality.Dim_product> on 2025-03-14 00:45:00+00:00
+[2025-03-14T01:04:55.807+0000] {warnings.py:110} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:61: DeprecationWarning: This process (pid=2334) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2025-03-14T01:04:55.808+0000] {standard_task_runner.py:63} INFO - Started process 2342 to run task
+[2025-03-14T01:04:55.809+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'sales_pipeline', 'test_quality.Dim_product', 'scheduled__2025-03-14T00:45:00+00:00', '--job-id', '235', '--raw', '--subdir', 'DAGS_FOLDER/pipeline.py', '--cfg-path', '/tmp/tmp3_i4835i']
+[2025-03-14T01:04:55.811+0000] {standard_task_runner.py:91} INFO - Job 235: Subtask test_quality.Dim_product
+[2025-03-14T01:04:55.900+0000] {task_command.py:426} INFO - Running <TaskInstance: sales_pipeline.test_quality.Dim_product scheduled__2025-03-14T00:45:00+00:00 [running]> on host 2b35ac7f54da
+[2025-03-14T01:04:56.077+0000] {taskinstance.py:2644} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='Mahmoud' AIRFLOW_CTX_DAG_ID='sales_pipeline' AIRFLOW_CTX_TASK_ID='test_quality.Dim_product' AIRFLOW_CTX_EXECUTION_DATE='2025-03-14T00:45:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-03-14T00:45:00+00:00'
+[2025-03-14T01:04:56.078+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2025-03-14T01:04:56.091+0000] {subprocess.py:63} INFO - Tmp dir root location: /tmp
+[2025-03-14T01:04:56.091+0000] {subprocess.py:75} INFO - Running command: ['/usr/bin/bash', '-c', 'dbt test  --profiles-dir /opt/***/dbt --project-dir /opt/***/dbt/sales --models Dim_product']
+[2025-03-14T01:04:56.116+0000] {subprocess.py:86} INFO - Output:
+[2025-03-14T01:04:59.514+0000] {subprocess.py:93} INFO - [0m01:04:59  Running with dbt=1.9.3
+[2025-03-14T01:05:00.357+0000] {subprocess.py:93} INFO - /home/***/.local/lib/python3.12/site-packages/snowflake/connector/options.py:108: UserWarning: You have an incompatible version of 'pyarrow' installed (19.0.1), please install a version that adheres to: 'pyarrow<19.0.0; extra == "pandas"'
+[2025-03-14T01:05:00.358+0000] {subprocess.py:93} INFO -   warn_incompatible_dep(
+[2025-03-14T01:05:01.157+0000] {subprocess.py:93} INFO - [0m01:05:01  Registered adapter: snowflake=1.9.2
+[2025-03-14T01:05:02.678+0000] {subprocess.py:93} INFO - [0m01:05:02  Found 10 models, 41 data tests, 6 sources, 855 macros
+[2025-03-14T01:05:02.682+0000] {subprocess.py:93} INFO - [0m01:05:02
+[2025-03-14T01:05:02.683+0000] {subprocess.py:93} INFO - [0m01:05:02  Concurrency: 2 threads (target='dev')
+[2025-03-14T01:05:02.684+0000] {subprocess.py:93} INFO - [0m01:05:02
+[2025-03-14T01:05:03.773+0000] {subprocess.py:93} INFO - [0m01:05:03  1 of 3 START test not_null_Dim_product_product_id .............................. [RUN]
+[2025-03-14T01:05:03.774+0000] {subprocess.py:93} INFO - [0m01:05:03  2 of 3 START test not_null_Dim_product_product_number .......................... [RUN]
+[2025-03-14T01:05:04.183+0000] {subprocess.py:93} INFO - [0m01:05:04  1 of 3 PASS not_null_Dim_product_product_id .................................... [[32mPASS[0m in 0.41s]
+[2025-03-14T01:05:04.186+0000] {subprocess.py:93} INFO - [0m01:05:04  3 of 3 START test unique_Dim_product_product_id ................................ [RUN]
+[2025-03-14T01:05:04.204+0000] {subprocess.py:93} INFO - [0m01:05:04  2 of 3 PASS not_null_Dim_product_product_number ................................ [[32mPASS[0m in 0.43s]
+[2025-03-14T01:05:04.394+0000] {subprocess.py:93} INFO - [0m01:05:04  3 of 3 PASS unique_Dim_product_product_id ...................................... [[32mPASS[0m in 0.21s]
+[2025-03-14T01:05:04.735+0000] {subprocess.py:93} INFO - [0m01:05:04
+[2025-03-14T01:05:04.736+0000] {subprocess.py:93} INFO - [0m01:05:04  Finished running 3 data tests in 0 hours 0 minutes and 2.05 seconds (2.05s).
+[2025-03-14T01:05:04.818+0000] {subprocess.py:93} INFO - [0m01:05:04
+[2025-03-14T01:05:04.818+0000] {subprocess.py:93} INFO - [0m01:05:04  [32mCompleted successfully[0m
+[2025-03-14T01:05:04.819+0000] {subprocess.py:93} INFO - [0m01:05:04
+[2025-03-14T01:05:04.819+0000] {subprocess.py:93} INFO - [0m01:05:04  Done. PASS=3 WARN=0 ERROR=0 SKIP=0 TOTAL=3
+[2025-03-14T01:05:06.060+0000] {subprocess.py:97} INFO - Command exited with return code 0
+[2025-03-14T01:05:06.061+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2025-03-14T01:05:06.121+0000] {taskinstance.py:1205} INFO - Marking task as SUCCESS. dag_id=sales_pipeline, task_id=test_quality.Dim_product, execution_date=20250314T004500, start_date=20250314T010455, end_date=20250314T010506
+[2025-03-14T01:05:06.189+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 0
+[2025-03-14T01:05:06.207+0000] {taskinstance.py:3482} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2025-03-14T01:05:06.264+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

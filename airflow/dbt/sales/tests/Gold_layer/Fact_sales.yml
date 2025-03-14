@@ -1,0 +1,35 @@
+version: 2
+
+models:
+  - name: fact_sales
+    description: "Fact table containing sales details with date, product, and customer keys."
+    columns:
+      - name: order_number
+        description: "Unique order identifier"
+        tests:
+          - unique
+          - not_null
+
+      - name: product_key
+        description: "Foreign key linking to dim_product"
+      
+      - name: customer_id
+        description: "Foreign key linking to dim_customer"
+      
+      - name: order_date_key
+        description: "Foreign key linking to dim_date for order date"
+
+      - name: ship_date_key
+        description: "Foreign key linking to dim_date for ship date"
+
+      - name: due_date_key
+        description: "Foreign key linking to dim_date for due date"
+
+      - name: sales
+        description: "Total sales amount"
+
+      - name: quantity
+        description: "Number of products sold"
+
+      - name: price
+        description: "Unit price of the product"

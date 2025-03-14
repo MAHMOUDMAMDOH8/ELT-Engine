@@ -23,7 +23,7 @@ models:
         tests:
           - not_null
 
-      - name: product_number
+      - name: product_name
         description: "Product number/name"
         data_type: VARCHAR(100)
         tests:

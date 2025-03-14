@@ -1,0 +1,31 @@
+version: 2
+
+models:
+  - name: Dim_customer
+    description: "Enriched customer information combining CRM, ERP, and location data."
+    columns:
+      - name: customer_id
+        description: "Unique identifier for the customer from CRM."
+        tests:
+          - not_null
+          - unique
+
+      - name: customer_unique_key
+        description: "Customer key used to join across CRM and ERP systems."
+        tests:
+          - not_null
+
+      - name: first_name
+        description: "Customer's first name."
+
+      - name: last_name
+        description: "Customer's last name."
+
+      - name: gender
+        description: "Customer's gender, sourced from CRM first, then ERP if missing."
+
+      - name: birth_date
+        description: "Customer's birth date from the ERP system."
+
+      - name: country
+        description: "Country of residence based on customer location data."

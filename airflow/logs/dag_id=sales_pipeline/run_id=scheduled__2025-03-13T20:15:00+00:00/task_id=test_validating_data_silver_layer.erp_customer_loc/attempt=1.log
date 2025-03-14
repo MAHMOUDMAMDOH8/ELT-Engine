@@ -1,0 +1,42 @@
+[2025-03-13T20:31:36.528+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2025-03-13T20:31:36.578+0000] {taskinstance.py:2073} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: sales_pipeline.test_validating_data_silver_layer.erp_customer_loc scheduled__2025-03-13T20:15:00+00:00 [queued]>
+[2025-03-13T20:31:36.599+0000] {taskinstance.py:2073} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: sales_pipeline.test_validating_data_silver_layer.erp_customer_loc scheduled__2025-03-13T20:15:00+00:00 [queued]>
+[2025-03-13T20:31:36.600+0000] {taskinstance.py:2303} INFO - Starting attempt 1 of 1
+[2025-03-13T20:31:36.644+0000] {taskinstance.py:2327} INFO - Executing <Task(BashOperator): test_validating_data_silver_layer.erp_customer_loc> on 2025-03-13 20:15:00+00:00
+[2025-03-13T20:31:36.660+0000] {warnings.py:110} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:61: DeprecationWarning: This process (pid=1123) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2025-03-13T20:31:36.664+0000] {standard_task_runner.py:63} INFO - Started process 1133 to run task
+[2025-03-13T20:31:36.664+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'sales_pipeline', 'test_validating_data_silver_layer.erp_customer_loc', 'scheduled__2025-03-13T20:15:00+00:00', '--job-id', '209', '--raw', '--subdir', 'DAGS_FOLDER/pipeline.py', '--cfg-path', '/tmp/tmprkdsbt06']
+[2025-03-13T20:31:36.667+0000] {standard_task_runner.py:91} INFO - Job 209: Subtask test_validating_data_silver_layer.erp_customer_loc
+[2025-03-13T20:31:36.757+0000] {task_command.py:426} INFO - Running <TaskInstance: sales_pipeline.test_validating_data_silver_layer.erp_customer_loc scheduled__2025-03-13T20:15:00+00:00 [running]> on host 2b35ac7f54da
+[2025-03-13T20:31:36.929+0000] {taskinstance.py:2644} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='Mahmoud' AIRFLOW_CTX_DAG_ID='sales_pipeline' AIRFLOW_CTX_TASK_ID='test_validating_data_silver_layer.erp_customer_loc' AIRFLOW_CTX_EXECUTION_DATE='2025-03-13T20:15:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-03-13T20:15:00+00:00'
+[2025-03-13T20:31:36.931+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2025-03-13T20:31:36.962+0000] {subprocess.py:63} INFO - Tmp dir root location: /tmp
+[2025-03-13T20:31:36.962+0000] {subprocess.py:75} INFO - Running command: ['/usr/bin/bash', '-c', 'dbt run --full-refresh --profiles-dir /opt/***/dbt --project-dir /opt/***/dbt/sales --models erp_customer_loc']
+[2025-03-13T20:31:36.999+0000] {subprocess.py:86} INFO - Output:
+[2025-03-13T20:31:42.006+0000] {subprocess.py:93} INFO - [0m20:31:42  Running with dbt=1.9.3
+[2025-03-13T20:31:43.093+0000] {subprocess.py:93} INFO - /home/***/.local/lib/python3.12/site-packages/snowflake/connector/options.py:108: UserWarning: You have an incompatible version of 'pyarrow' installed (19.0.1), please install a version that adheres to: 'pyarrow<19.0.0; extra == "pandas"'
+[2025-03-13T20:31:43.094+0000] {subprocess.py:93} INFO -   warn_incompatible_dep(
+[2025-03-13T20:31:43.986+0000] {subprocess.py:93} INFO - [0m20:31:43  Registered adapter: snowflake=1.9.2
+[2025-03-13T20:31:44.884+0000] {subprocess.py:93} INFO - [0m20:31:44  [[33mWARNING[0m]: Configuration paths exist in your dbt_project.yml file which do not apply to any resources.
+[2025-03-13T20:31:44.888+0000] {subprocess.py:93} INFO - There are 1 unused configuration paths:
+[2025-03-13T20:31:44.889+0000] {subprocess.py:93} INFO - - models.sales.Gold_layer
+[2025-03-13T20:31:45.279+0000] {subprocess.py:93} INFO - [0m20:31:45  Found 6 models, 35 data tests, 6 sources, 855 macros
+[2025-03-13T20:31:45.285+0000] {subprocess.py:93} INFO - [0m20:31:45
+[2025-03-13T20:31:45.286+0000] {subprocess.py:93} INFO - [0m20:31:45  Concurrency: 2 threads (target='dev')
+[2025-03-13T20:31:45.288+0000] {subprocess.py:93} INFO - [0m20:31:45
+[2025-03-13T20:31:46.553+0000] {subprocess.py:93} INFO - [0m20:31:46  1 of 1 START sql incremental model layer_silver.erp_customer_loc ............... [RUN]
+[2025-03-13T20:31:47.622+0000] {subprocess.py:93} INFO - [0m20:31:47  1 of 1 OK created sql incremental model layer_silver.erp_customer_loc .......... [[32mSUCCESS 1[0m in 1.07s]
+[2025-03-13T20:31:47.874+0000] {subprocess.py:93} INFO - [0m20:31:47
+[2025-03-13T20:31:47.875+0000] {subprocess.py:93} INFO - [0m20:31:47  Finished running 1 incremental model in 0 hours 0 minutes and 2.59 seconds (2.59s).
+[2025-03-13T20:31:47.940+0000] {subprocess.py:93} INFO - [0m20:31:47
+[2025-03-13T20:31:47.941+0000] {subprocess.py:93} INFO - [0m20:31:47  [32mCompleted successfully[0m
+[2025-03-13T20:31:47.941+0000] {subprocess.py:93} INFO - [0m20:31:47
+[2025-03-13T20:31:47.942+0000] {subprocess.py:93} INFO - [0m20:31:47  Done. PASS=1 WARN=0 ERROR=0 SKIP=0 TOTAL=1
+[2025-03-13T20:31:49.429+0000] {subprocess.py:97} INFO - Command exited with return code 0
+[2025-03-13T20:31:49.429+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2025-03-13T20:31:49.464+0000] {taskinstance.py:1205} INFO - Marking task as SUCCESS. dag_id=sales_pipeline, task_id=test_validating_data_silver_layer.erp_customer_loc, execution_date=20250313T201500, start_date=20250313T203136, end_date=20250313T203149
+[2025-03-13T20:31:49.504+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 0
+[2025-03-13T20:31:49.526+0000] {taskinstance.py:3482} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2025-03-13T20:31:49.528+0000] {local_task_job_runner.py:222} INFO - ::endgroup::
