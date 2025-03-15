@@ -46,8 +46,8 @@ D -- "Replace source foreign keys with new products surrogate keys" --> F;
 - **Snowflake**: As the data warehouse.
 - **Docker**: To containerize and standardize the development environment.
 - **Python**: For scripting and automation.
-- **Airflow** (optional): For orchestrating ETL workflows.
-- **Power BI** (optional): For visualizing the reporting layer.
+- **Airflow** : For orchestrating ETL workflows.
+- **Power BI** : For visualizing the reporting layer.
 
 ## Assumptions
 Snowflake is the database platform used for data storage and transformations.
@@ -70,9 +70,9 @@ The project follows the Medallion Architecture, which organizes data into three 
 
 If using Airflow for orchestration, the DAG performs the following tasks:
 
-Extract: Reads raw data from source olap database or APIs.
-Load: Loads data into the PostgreSQL database.
-Transform: Executes DBT models to build staging, dimension, and fact tables.
+Extract: Reads raw data from (CRM and ERP systems) .
+Load: Loads data into the Snowflake .
+Transform: Executes DBT models to build Bronze Layer (Raw Data),Silver Layer (Cleansed Data) , and Gold Layer (Aggregated Data) .
 ## Data Warehouse Model 
 ```mermaid
 erDiagram
