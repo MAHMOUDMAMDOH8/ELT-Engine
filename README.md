@@ -73,7 +73,6 @@ If using Airflow for orchestration, the DAG performs the following tasks:
 Extract: Reads raw data from source olap database or APIs.
 Load: Loads data into the PostgreSQL database.
 Transform: Executes DBT models to build staging, dimension, and fact tables.
-
 ## Data Warehouse Model 
 ```mermaid
 erDiagram
@@ -130,6 +129,7 @@ erDiagram
     sales_fact ||--o{ date_dim : "ordered on"
     sales_fact ||--o{ date_dim : "shipped on"
     sales_fact ||--o{ date_dim : "due on"
+```
 
 ## Data Lineage 
 ![Lineage Graph](https://github.com/user-attachments/assets/bc59f140-e299-43e0-b3b3-59d5c340003e)
