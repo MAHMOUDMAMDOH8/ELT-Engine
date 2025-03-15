@@ -150,7 +150,7 @@ with dag:
         for model in models:
             dbt_task = BashOperator(
                 task_id = f'{model}',
-                bash_command=f'dbt run --full-refresh --profiles-dir /opt/airflow/dbt --project-dir /opt/airflow/dbt/sales --models {model}'
+                bash_command=f'dbt run  --profiles-dir /opt/airflow/dbt --project-dir /opt/airflow/dbt/sales --models {model}'
             )
 
     with TaskGroup('test_validating_data_silver_layer') as test_validating_data_silver_layer :
@@ -179,7 +179,7 @@ with dag:
         for model in models:
             dbt_task = BashOperator(
                 task_id = f'{model}',
-                bash_command=f'dbt run --full-refresh --profiles-dir /opt/airflow/dbt --project-dir /opt/airflow/dbt/sales --models {model}'
+                bash_command=f'dbt run --profiles-dir /opt/airflow/dbt --project-dir /opt/airflow/dbt/sales --models {model}'
             )
     
     with TaskGroup('test_quality') as test_quality :
