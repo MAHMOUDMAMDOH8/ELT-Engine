@@ -124,13 +124,12 @@ erDiagram
         float price
     }
 
-    -- Relationships
-    sales_fact ||--o{ customer_dim : "customer_id"
-    sales_fact ||--o{ product_dim : "product_key"
-    sales_fact ||--o{ date_dim : "order_date_key"
-    sales_fact ||--o{ date_dim : "ship_date_key"
-    sales_fact ||--o{ date_dim : "due_date_key"
-```
+    %% Relationships
+    sales_fact ||--o{ customer_dim : "belongs to"
+    sales_fact ||--o{ product_dim : "contains"
+    sales_fact ||--o{ date_dim : "ordered on"
+    sales_fact ||--o{ date_dim : "shipped on"
+    sales_fact ||--o{ date_dim : "due on"
 
 ## Data Lineage 
 ![Lineage Graph](https://github.com/user-attachments/assets/bc59f140-e299-43e0-b3b3-59d5c340003e)
