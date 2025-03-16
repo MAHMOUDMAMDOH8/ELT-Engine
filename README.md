@@ -75,7 +75,7 @@ Load: Loads data into the Snowflake .
 Transform: Executes DBT models to build Bronze Layer (Raw Data),Silver Layer (Cleansed Data) , and Gold Layer (Aggregated Data) .
 
 ## DBT Models
-
+#### customer_cte
  
     {{
     config(
@@ -111,7 +111,7 @@ Transform: Executes DBT models to build Bronze Layer (Raw Data),Silver Layer (Cl
         cst_create_date 
     FROM customer_cte
     WHERE last_update = 1 and cst_id is not null
-
+#### sales_cte
 
     with sales_cte as (
         SELECT 
