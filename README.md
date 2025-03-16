@@ -73,6 +73,8 @@ If using Airflow for orchestration, the DAG performs the following tasks:
 Extract: Reads raw data from (CRM and ERP systems) .
 Load: Loads data into the Snowflake .
 Transform: Executes DBT models to build Bronze Layer (Raw Data),Silver Layer (Cleansed Data) , and Gold Layer (Aggregated Data) .
+see more : [airflow DAG](https://github.com/MAHMOUDMAMDOH8/ELT-Engine/blob/main/airflow/dags/pipeline.py)
+
 
 ## DBT Models
 #### customer_cte
